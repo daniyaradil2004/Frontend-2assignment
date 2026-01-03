@@ -1,0 +1,254 @@
+.stepper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.stepper.horizontal {
+  display: flex;
+  flex-direction: column;
+}
+
+.stepper.vertical {
+  display: flex;
+  flex-direction: row;
+}
+
+.stepper-list {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.stepper.vertical .stepper-list {
+  flex-direction: column;
+  margin-bottom: 0;
+  margin-right: 2rem;
+}
+
+.stepper-list-item {
+  flex: 1;
+  position: relative;
+}
+
+.stepper-list-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 1.5rem;
+  left: 2.5rem;
+  right: -0.5rem;
+  height: 2px;
+  background-color: #e0e0e0;
+  z-index: 0;
+}
+
+.stepper.vertical .stepper-list-item:not(:last-child)::after {
+  top: 3rem;
+  left: 1.5rem;
+  right: auto;
+  width: 2px;
+  height: 100%;
+  bottom: -0.5rem;
+}
+
+.stepper-list-item.completed::after,
+.stepper-list-item.active::after {
+  background-color: #4caf50;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.step:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 4px;
+}
+
+.step.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.step-indicator {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #757575;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.step.active .step-indicator {
+  background-color: #2196f3;
+  color: white;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+.step.completed .step-indicator {
+  background-color: #4caf50;
+  color: white;
+}
+
+.step-number {
+  font-size: 1.125rem;
+}
+
+.check-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  stroke-width: 3;
+}
+
+.step-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.step-title {
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #424242;
+}
+
+.step.active .step-title {
+  color: #2196f3;
+  font-weight: 700;
+}
+
+.step-description {
+  font-size: 0.75rem;
+  color: #757575;
+}
+
+.step-content {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  border-radius: 0.5rem;
+  min-height: 300px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stepper-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+}
+
+.stepper-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.stepper-button:focus {
+  outline: 2px solid #2196f3;
+  outline-offset: 2px;
+}
+
+.stepper-button-previous {
+  background-color: #f5f5f5;
+  color: #424242;
+}
+
+.stepper-button-previous:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.stepper-button-next,
+.stepper-button-finish {
+  background-color: #2196f3;
+  color: white;
+  margin-left: auto;
+}
+
+.stepper-button-next:hover:not(:disabled),
+.stepper-button-finish:hover:not(:disabled) {
+  background-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.4);
+}
+
+.stepper-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .stepper-list {
+    flex-direction: column;
+  }
+
+  .stepper-list-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .step {
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+
+  .step-indicator {
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+
+  .step-label {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .stepper-controls {
+    flex-direction: column;
+  }
+
+  .stepper-button {
+    width: 100%;
+  }
+}
+
